@@ -3,12 +3,12 @@ import {Link} from "react-router-dom";
 
 const Header = () => {
     const showNavigation = () => (
-        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-            <Link to='/' class='navbar-brand'>
+        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+            <Link to='/' className='navbar-brand'>
                 Logo
             </Link>
             <button
-                class='navbar-toggler'
+                className='navbar-toggler'
                 type='button'
                 data-toggle='collapse'
                 data-target='#navbarTogglerDemo02'
@@ -16,23 +16,23 @@ const Header = () => {
                 aria-expanded='false'
                 aria-label='Toggle navigation'
             >
-                <span class='navbar-toggler-icon'></span>
+                <span className='navbar-toggler-icon'></span>
             </button>
 
-            <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
-                <ul class='navbar-nav ml-auto mt-2 mt-lg-0'>
+            <div className='collapse navbar-collapse' id='navbarTogglerDemo02'>
+                <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
                     <li className='nav-item'>
-                        <Link to='/home' class='nav-link'>
+                        <Link to='/home' className='nav-link'>
                             Home
                         </Link>
                     </li>
-                    <li class='nav-item'>
-                        <Link to='/signup' class='nav-link'>
+                    <li className='nav-item'>
+                        <Link to='/signup' className='nav-link'>
                             Sign Up
                         </Link>
                     </li>
-                    <li class='nav-item'>
-                        <Link to='/signin' class='nav-link'>
+                    <li className='nav-item'>
+                        <Link to='/signin' className='nav-link'>
                             Sign In
                         </Link>
                     </li>
@@ -40,7 +40,8 @@ const Header = () => {
             </div>
         </nav>
     );
-    return <header id='header'>{showNavigation()}</header>;
+
+    return <header className='header'>{showNavigation()}</header>;
 };
 
 export default Header;

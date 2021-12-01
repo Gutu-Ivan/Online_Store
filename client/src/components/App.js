@@ -12,10 +12,10 @@ const App  = () => (
         <Header/>
         <main>
             <Routes>
-                <Route exact path={'/'} component={Home} />
-                <Route exact path={'/signup'} component={Signup} />
-                <Route exact path={'/sign'} component={Signin} />
-                <Route component={NotFound} />
+                <Route exact path={'/'} element={<Home/>} />
+                <Route exact path={'/signup'} element={<Signup/>} />
+                <Route exact path={'/signin'} element={<Signin/>} />
+                <Route element={<NotFound/>} />
             </Routes>
         </main>
     </BrowserRouter>
