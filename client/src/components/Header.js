@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const Header = () => {
     const showNavigation = () => (
         <nav class='navbar navbar-expand-lg navbar-light bg-light'>
-            <Link to='#' class='navbar-brand'>
+            <Link to='/' class='navbar-brand'>
                 Logo
             </Link>
             <button
@@ -21,13 +21,18 @@ const Header = () => {
 
             <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
                 <ul class='navbar-nav ml-auto mt-2 mt-lg-0'>
+                    <li className='nav-item'>
+                        <Link to='/home' class='nav-link'>
+                            Home
+                        </Link>
+                    </li>
                     <li class='nav-item'>
-                        <Link to='#' class='nav-link'>
+                        <Link to='/signup' class='nav-link'>
                             Sign Up
                         </Link>
                     </li>
                     <li class='nav-item'>
-                        <Link to='#' class='nav-link'>
+                        <Link to='/signin' class='nav-link'>
                             Sign In
                         </Link>
                     </li>
