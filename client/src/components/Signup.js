@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import isEmpty from 'validator/lib/isEmpty';
-import isEmail from 'validator/lib/isEmail';
-import equals from 'validator/lib/equals';
+import {isEmpty, isEmail, equals} from 'validator';
 import '../assets/css/Signup.css'
 
 const Signup = () => {
@@ -10,7 +8,7 @@ const Signup = () => {
         username: '',
         email: '',
         password1: '',
-        password2:  '',
+        password2: '',
         successMsg: false,
         errorMsg: false,
         loading: false
@@ -43,10 +41,11 @@ const Signup = () => {
                 errorMsg: 'Passwords do not match'
             })
         } else {
-            // setFormData({
-            //     ...formData,
-            //     successMsg: 'Successful'
-            // })
+            setFormData({
+                ...formData,
+                errorMsg: 'No errors',
+                successMsg: 'Successful'
+            })
         }
     }
 
@@ -86,7 +85,6 @@ const Signup = () => {
                                     <div className="mb-3">
                                         <label className="mb-2 text-muted" htmlFor="email">E-Mail Address</label>
                                         <input id="email"
-                                               type="email"
                                                className="form-control"
                                                name="email"
                                                value={email}

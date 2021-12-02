@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {Link} from "react-router-dom";
 
 const Forgot = () => {
@@ -24,7 +24,6 @@ const Forgot = () => {
                                             type="email"
                                             className="form-control"
                                             name="email"
-                                            value=""
                                             required
                                             autoFocus>
                                         </input>
@@ -56,6 +55,14 @@ const Forgot = () => {
         </section>
     );
     return <div>{forgotPassword()}</div>
+    // return (
+    //     <div>
+    //         <Suspense fallback={<div>Loading...</div>}>
+    //             <div>
+    //                 {forgotPassword()}
+    //             </div>
+    //         </Suspense>
+    //     </div>)
 }
 
 export default Forgot
