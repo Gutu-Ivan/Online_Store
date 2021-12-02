@@ -19,7 +19,7 @@ const App  = () => (
                 <Route exact path={'/signin'} element={<Signin/>} />
                 <Route exact path={'/reset-password'} element={<Reset/>} />
                 <Route exact path={'/forgot-password'} element={<Forgot/>} />
-                <Route element={<NotFound/>} />
+                <Route path={'*'} element={<NotFound/>} />
             </Routes>
         </main>
     </BrowserRouter>
