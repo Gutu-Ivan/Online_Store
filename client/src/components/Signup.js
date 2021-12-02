@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {isEmpty, isEmail, equals} from 'validator';
+import { showErrorMsg, showSuccessMsg } from '../helpers/message';
 import '../assets/css/Signup.css'
 
 const Signup = () => {
@@ -43,7 +44,6 @@ const Signup = () => {
         } else {
             setFormData({
                 ...formData,
-                errorMsg: 'No errors',
                 successMsg: 'Successful'
             })
         }
@@ -156,8 +156,9 @@ const Signup = () => {
 
     return (
         <div className="signup-container">
+            {errorMsg && showErrorMsg(errorMsg)}
+            {successMsg && showSuccessMsg(successMsg)}
             {showSignupForm()}
-            {JSON.stringify(formData)}
         </div>
     )
 };
