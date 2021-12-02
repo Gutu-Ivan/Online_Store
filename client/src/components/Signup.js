@@ -1,7 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import '../assets/css/Signup.css'
 
 const Signup = () => {
+    const[formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password1: '',
+        password2:  '',
+        successMsg: false,
+        errorMsg: false,
+        loading: false
+    });
+    const {username, email, password1, password2, successMsg, errorMsg, loading} = formData;
+
+    const handleChange = evt => {
+        setFormData({
+            ...formData,
+            [evt.target.name]: evt.target.value,
+        });
+    }
+
+    const handleSubmit = evt => {
+        evt.preventDefault();
+        console.log(formData)
+    }
+
     const showSignupForm = () => (
         <section className="h-100">
             <div className="container h-100">
@@ -17,16 +41,18 @@ const Signup = () => {
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Register</h1>
-                                <form method="POST" className="needs-validation" noValidate="" autoComplete="off">
+                                <form method="POST" className="needs-validation" noValidate="" onSubmit={handleSubmit} autoComplete="off">
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="name">Name</label>
+                                        <label className="mb-2 text-muted" htmlFor="username">Name</label>
                                         <input
-                                            id="name"
+                                            id="username"
                                             type="text"
                                             className="form-control"
-                                            name="name"
+                                            name="username"
+                                            value={username}
                                             required
-                                            autoFocus>
+                                            autoFocus
+                                            onChange={handleChange}>
 
                                         </input>
                                         <div className="invalid-feedback">
@@ -40,7 +66,9 @@ const Signup = () => {
                                                type="email"
                                                className="form-control"
                                                name="email"
-                                               required>
+                                               value={email}
+                                               required
+                                               onChange={handleChange}>
 
                                         </input>
                                         <div className="invalid-feedback">
@@ -49,12 +77,14 @@ const Signup = () => {
                                     </div>
 
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="password">Password</label>
-                                        <input id="password"
+                                        <label className="mb-2 text-muted" htmlFor="password1">Password</label>
+                                        <input id="password1"
                                                type="password"
                                                className="form-control"
-                                               name="password"
-                                               required>
+                                               name="password1"
+                                               value={password1}
+                                               required
+                                               onChange={handleChange}>
 
                                         </input>
                                         <div className="invalid-feedback">
@@ -63,12 +93,14 @@ const Signup = () => {
                                     </div>
 
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="password">Confirm Password</label>
-                                        <input id="password-confirmation"
+                                        <label className="mb-2 text-muted" htmlFor="password2">Confirm Password</label>
+                                        <input id="password2"
                                                type="password"
                                                className="form-control"
-                                               name="password-confirmation"
-                                               required>
+                                               name="password2"
+                                               value={password2}
+                                               required
+                                               onChange={handleChange}>
                                         </input>
                                         <div className="invalid-feedback">
                                             Confirm password
@@ -104,7 +136,12 @@ const Signup = () => {
         </section>
     );
 
-    return <div>{showSignupForm()}</div>
+    return (
+        <div className="signup-container">
+            {showSignupForm()}
+            {JSON.stringify(formData)}
+        </div>
+    )
 };
 
 export default Signup;

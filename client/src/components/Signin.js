@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import '../assets/css/Signup.css'
 
 const Signin = () => {
     const showSigninForm = () => (
@@ -25,7 +26,7 @@ const Signin = () => {
                                         <input id="email"
                                                type="email"
                                                className="form-control"
-                                               name="email" value=""
+                                               name="email"
                                                required
                                                autoFocus>
                                         </input>
@@ -37,7 +38,7 @@ const Signin = () => {
                                     <div className="mb-3">
                                         <div className="mb-2 w-100">
                                             <label className="text-muted" htmlFor="password">Password</label>
-                                            <Link to="/restore-password" className="float-end">
+                                            <Link to="/forgot-password" className="float-end">
                                                 Forgot Password?
                                             </Link>
                                         </div>
@@ -88,7 +89,7 @@ const Signin = () => {
             </div>
         </section>
     );
-    return <div>{showSigninForm()}</div>
+    return <div className="signup-container">{showSigninForm()}</div>
 };
 
 export default Signin;
