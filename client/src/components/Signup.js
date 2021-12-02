@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import isEmpty from 'validator/lib/isEmpty';
+import isEmail from 'validator/lib/isEmail';
+import equals from 'validator/lib/equals';
 import '../assets/css/Signup.css'
 
 const Signup = () => {
@@ -24,6 +27,27 @@ const Signup = () => {
     const handleSubmit = evt => {
         evt.preventDefault();
         console.log(formData)
+        if (isEmpty(username) || isEmpty(email) || isEmpty(password1) || isEmpty(password2)) {
+            setFormData({
+                ...formData,
+                errorMsg: 'All fields are required'
+            })
+        } else if(!isEmail(email)){
+            setFormData({
+                ...formData,
+                errorMsg: 'Invalid email'
+            })
+        } else if (!equals(password1, password2)) {
+            setFormData({
+                ...formData,
+                errorMsg: 'Passwords do not match'
+            })
+        } else {
+            // setFormData({
+            //     ...formData,
+            //     successMsg: 'Successful'
+            // })
+        }
     }
 
     const showSignupForm = () => (
@@ -50,7 +74,6 @@ const Signup = () => {
                                             className="form-control"
                                             name="username"
                                             value={username}
-                                            required
                                             autoFocus
                                             onChange={handleChange}>
 
@@ -67,7 +90,6 @@ const Signup = () => {
                                                className="form-control"
                                                name="email"
                                                value={email}
-                                               required
                                                onChange={handleChange}>
 
                                         </input>
@@ -83,7 +105,6 @@ const Signup = () => {
                                                className="form-control"
                                                name="password1"
                                                value={password1}
-                                               required
                                                onChange={handleChange}>
 
                                         </input>
@@ -99,7 +120,6 @@ const Signup = () => {
                                                className="form-control"
                                                name="password2"
                                                value={password2}
-                                               required
                                                onChange={handleChange}>
                                         </input>
                                         <div className="invalid-feedback">
