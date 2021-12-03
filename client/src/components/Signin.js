@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import '../assets/css/Signup.css'
+import '../assets/css/Main.css'
 import {showLoading} from "../helpers/loading";
 
 const Signin = () => {
@@ -11,7 +11,7 @@ const Signin = () => {
         password2: '',
         successMsg: false,
         errorMsg: false,
-        loading: true
+        loading: false
     });
 
     const {loading} = formData;
