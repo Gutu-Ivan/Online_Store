@@ -42,7 +42,7 @@ const Forgot = () => {
                             <div className="card-footer py-3 border-0">
                                 <div className="text-center">
                                     Remember your password?
-                                    <Link to="/signin" className="text-dark">Login</Link>
+                                    <Link to="/signin" className="text-white">Login</Link>
                                 </div>
                             </div>
                         </div>

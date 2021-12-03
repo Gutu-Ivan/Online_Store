@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {isEmpty, isEmail, equals} from 'validator';
-import { showErrorMsg, showSuccessMsg } from '../helpers/message';
+import { showErrorMsg, showSuccessMsg} from '../helpers/message';
+import { showLoading } from "../helpers/loading";
 import '../assets/css/Signup.css'
 
 const Signup = () => {
@@ -12,7 +13,7 @@ const Signup = () => {
         password2: '',
         successMsg: false,
         errorMsg: false,
-        loading: false
+        loading: true
     });
     const {username, email, password1, password2, successMsg, errorMsg, loading} = formData;
 
@@ -20,6 +21,8 @@ const Signup = () => {
         setFormData({
             ...formData,
             [evt.target.name]: evt.target.value,
+            successMsg: '',
+            errorMsg: ''
         });
     }
 
@@ -54,13 +57,6 @@ const Signup = () => {
             <div className="container h-100">
                 <div className="row justify-content-sm-center h-100">
                     <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                        <div className="text-center my-5">
-                            <img
-                                src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
-                                alt="logo"
-                                width="100">
-                            </img>
-                        </div>
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Register</h1>
@@ -124,29 +120,34 @@ const Signup = () => {
                                             Confirm password
                                         </div>
                                     </div>
-
-                                    <p className="form-text text-muted mb-3">
-                                        By registering you agree with our terms and condition.
-                                    </p>
-
-                                    <div className="align-items-center d-flex">
-                                        <button type="submit" className="btn btn-primary ms-auto">
-                                            Register
-                                        </button>
+                                    <div className="d-flex align-items-center">
+                                        <div className="form-check">
+                                            <input
+                                                type="checkbox"
+                                                name="remember"
+                                                id="remember"
+                                                className="form-check-input">
+                                            </input>
+                                            <label htmlFor="remember" className="form-check-label">
+                                                By registering you agree with our terms and condition.
+                                            </label>
+                                        </div>
+                                        <div className="align-items-center d-flex">
+                                            <button type="submit" className="btn btn-primary ms-auto">
+                                                Register
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
                             <div className="card-footer py-3 border-0">
                                 <div className="text-center">
                                     Already have an account?
-                                    <Link to="/signin" className="text-dark">
+                                    <Link to="/signin" className="text-white">
                                         Login
                                     </Link>
                                 </div>
                             </div>
-                        </div>
-                        <div className="text-center mt-5 text-muted">
-                            Copyright &copy; 2017-2021 &mdash; Your Company
                         </div>
                     </div>
                 </div>
@@ -156,8 +157,11 @@ const Signup = () => {
 
     return (
         <div className="signup-container">
-            {errorMsg && showErrorMsg(errorMsg)}
-            {successMsg && showSuccessMsg(successMsg)}
+            <div className="my-5">
+                {successMsg && showSuccessMsg(successMsg)}
+                {errorMsg && showErrorMsg(errorMsg)}
+            </div>
+            {loading && showLoading()}
             {showSignupForm()}
         </div>
     )

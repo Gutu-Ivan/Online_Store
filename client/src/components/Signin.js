@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import '../assets/css/Signup.css'
+import {showLoading} from "../helpers/loading";
 
 const Signin = () => {
+    const[formData] = useState({
+        username: '',
+        email: '',
+        password1: '',
+        password2: '',
+        successMsg: false,
+        errorMsg: false,
+        loading: true
+    });
+
+    const {loading} = formData;
+
     const showSigninForm = () => (
         <section className="h-100">
             <div className="container h-100">
                 <div className="row justify-content-sm-center h-100">
                     <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                        <div className="text-center my-5">
-                            <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
-                                 alt="logo"
-                                 width="100">
-                            </img>
-                        </div>
+
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Login</h1>
@@ -75,21 +83,25 @@ const Signin = () => {
                             <div className="card-footer py-3 border-0">
                                 <div className="text-center">
                                     Don't have an account?
-                                    <Link to="/signup" className="text-dark">
+                                    <Link to="/signup" className="text-white">
                                         Create One
                                     </Link>
                                 </div>
                             </div>
-                        </div>
-                        <div className="text-center mt-5 text-muted">
-                            Copyright &copy; 2017-2021 &mdash; Your Company
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     );
-    return <div className="signup-container">{showSigninForm()}</div>
+    return (
+        <div className="signup-container">
+            <div className="my-5">
+                {loading && showLoading()}
+            </div>
+            {showSigninForm()}
+        </div>
+    )
 };
 
 export default Signin;
