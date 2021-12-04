@@ -4,7 +4,7 @@
     box-sizing: border-box !important;
 }
 
-.signup-container{
+.signup-container {
     /*background-image: url("./src/assets/img/img-signup-bkg.jpg");*/
     /*background-color: #ff0000;*/
     /*height: 100vh;*/
@@ -15,11 +15,11 @@ body {
     color: #ffffff;
 }
 
-.bg-main{
+.bg-main {
     background-color: #2a2a2d;
 }
 
-.navbar-toggler{
+.navbar-toggler {
     background-color: rgba(34, 34, 38, 0.8);
     box-shadow: none !important
 }
@@ -75,50 +75,48 @@ body {
     animation: reactEllipseRight 500ms ease-in-out backwards 1000ms;
 }
 
-@keyframes animate{
-    0%
-    {
+@keyframes animate {
+    0% {
         transform: rotate(0deg);
     }
-    100%
-    {
+    100% {
         transform: rotate(360deg);
     }
 }
 
-.btn-primary{
+.btn-primary {
     border: none !important;
     box-shadow: none !important;
     text-decoration: none;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     background-color: rgba(13, 110, 253, 0.7);
 }
 
-.btn-primary:active{
+.btn-primary:active {
     transform: scale(0.9);
 }
 
-.card{
+.card {
     background-color: #333336;
 }
 
-.text-muted{
+.text-muted {
     color: #ffffff !important;
 }
 
 .form-control,
-.form-control:focus{
+.form-control:focus {
     background-color: #3b4352;
     color: #ffffff;
     border-color: rgba(13, 110, 253, 0.5);
 }
 
-.text-white{
+.text-white {
     margin-left: 10px;
 }
 
-.card-footer{
+.card-footer {
     background-color: #2a2a2d;
 }

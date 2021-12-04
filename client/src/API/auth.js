@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const signup = async(data) => {
+export const signup = async (data) => {
     const config = {
         headers: {
             'Content-Type': 'application/json'

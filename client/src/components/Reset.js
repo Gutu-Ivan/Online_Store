@@ -10,33 +10,40 @@ const Reset = () => {
                             <img
                                 src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
                                 alt="logo"
-                                 width="100">
+                                width="100">
                             </img>
                         </div>
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Reset Password</h1>
-                                <form method="POST" className="needs-validation" noValidate="" autoComplete="off">
+                                <form method="POST"
+                                      className="needs-validation"
+                                      noValidate=""
+                                      autoComplete="off">
+
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="password">New Password</label>
+                                        <label className="mb-2 text-muted" htmlFor="password">
+                                            New Password
+                                        </label>
                                         <input id="password"
                                                type="password"
                                                className="form-control"
                                                name="password"
                                                value=""
-                                               required autoFocus>
+                                               autoFocus>
                                         </input>
                                         <div className="invalid-feedback">
                                             Password is required
                                         </div>
                                     </div>
-
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="password-confirm">Confirm Password</label>
+                                        <label className="mb-2 text-muted" htmlFor="password-confirm">
+                                            Confirm Password
+                                        </label>
                                         <input id="password-confirm"
                                                type="password"
                                                className="form-control"
-                                               name="password_confirm" required>
+                                               name="password_confirm">
                                         </input>
                                         <div className="invalid-feedback">
                                             Please confirm your new password
@@ -51,16 +58,13 @@ const Reset = () => {
                                 </form>
                             </div>
                         </div>
-                        <div className="text-center mt-5 text-muted">
-                            Copyright &copy; 2017-2021 &mdash; Your Company
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
     );
-    return <div>{resetPassword()}</div>
 
+    return <div>{resetPassword()}</div>
 }
 
 export default Reset;

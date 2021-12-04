@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const db =async() => {
-    try{
+const db = async () => {
+    try {
         await mongoose.connect(
             'mongodb+srv://store_user:pass12345@online-store.ouvnt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
             {
@@ -9,7 +9,8 @@ const db =async() => {
             }
         );
         console.log('Database connection successful')
-    } catch (err) {
+    }
+    catch (err) {
         console.log(err)
     }
 }

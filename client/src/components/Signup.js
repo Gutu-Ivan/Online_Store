@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-import {isEmpty, isEmail, equals} from 'validator';
-import { showErrorMsg, showSuccessMsg} from '../helpers/message';
-import { showLoading } from "../helpers/loading";
+import React, { useState }              from 'react';
+import { Link }                         from 'react-router-dom';
+import { equals, isEmail, isEmpty }     from 'validator';
+import { showErrorMsg, showSuccessMsg } from '../helpers/message';
+import { showLoading }                  from "../helpers/loading";
+import { signup }                       from '../API/auth';
 import '../assets/css/Main.css'
-import {signup} from '../API/auth';
 
 const Signup = () => {
-    const[formData, setFormData] = useState({
+    const [formData, setFormData] = useState({
         username: '',
         email: '',
         password1: '',
@@ -16,7 +16,7 @@ const Signup = () => {
         errorMsg: false,
         loading: false
     });
-    const {username, email, password1, password2, successMsg, errorMsg, loading} = formData;
+    const { username, email, password1, password2, successMsg, errorMsg, loading } = formData;
 
     const handleChange = evt => {
         setFormData({
@@ -35,7 +35,7 @@ const Signup = () => {
                 ...formData,
                 errorMsg: 'All fields are required'
             })
-        } else if(!isEmail(email)){
+        } else if (!isEmail(email)) {
             setFormData({
                 ...formData,
                 errorMsg: 'Invalid email'
@@ -46,9 +46,9 @@ const Signup = () => {
                 errorMsg: 'Passwords do not match'
             })
         } else {
-            const {username, email, password1} = formData
-            const data = {username, email, password1};
-            setFormData({...formData, loading: true});
+            const { username, email, password1 } = formData
+            const data = { username, email, password1 };
+            setFormData({ ...formData, loading: true });
 
             signup(data)
                 .then(response => {
@@ -62,12 +62,13 @@ const Signup = () => {
                         successMsg: response.data.successMessage
                     });
                 })
-                .catch (err => {
+                .catch(err => {
                     console.log('Axios signup error', err);
                     setFormData({
                         ...formData,
                         loading: false,
-                        errorMsg: err.response.data.errorMessage})
+                        errorMsg: err.response.data.errorMessage
+                    })
                 })
         }
     }
@@ -81,54 +82,50 @@ const Signup = () => {
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Register</h1>
                                 <form method="POST" className="needs-validation" noValidate="" onSubmit={handleSubmit} autoComplete="off">
-                                    <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="username">Name</label>
-                                        <input
-                                            id="username"
-                                            type="text"
-                                            className="form-control"
-                                            name="username"
-                                            value={username}
-                                            autoFocus
-                                            onChange={handleChange}>
 
+                                    <div className="mb-3">
+                                        <label className="mb-2 text-muted" htmlFor="username">
+                                            Name
+                                        </label>
+                                        <input id="username"
+                                               type="text"
+                                               className="form-control"
+                                               name="username"
+                                               value={username}
+                                               autoFocus
+                                               onChange={handleChange}>
                                         </input>
-                                        <div className="invalid-feedback">
-                                            Name is required
-                                        </div>
                                     </div>
 
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="email">E-Mail Address</label>
+                                        <label className="mb-2 text-muted" htmlFor="email">
+                                            E-Mail Address
+                                        </label>
                                         <input id="email"
                                                className="form-control"
                                                name="email"
                                                value={email}
                                                onChange={handleChange}>
-
                                         </input>
-                                        <div className="invalid-feedback">
-                                            Email is invalid
-                                        </div>
                                     </div>
 
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="password1">Password</label>
+                                        <label className="mb-2 text-muted" htmlFor="password1">
+                                            Password
+                                        </label>
                                         <input id="password1"
                                                type="password"
                                                className="form-control"
                                                name="password1"
                                                value={password1}
                                                onChange={handleChange}>
-
                                         </input>
-                                        <div className="invalid-feedback">
-                                            Password is required
-                                        </div>
                                     </div>
 
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="password2">Confirm Password</label>
+                                        <label className="mb-2 text-muted" htmlFor="password2">
+                                            Confirm Password
+                                        </label>
                                         <input id="password2"
                                                type="password"
                                                className="form-control"
@@ -136,10 +133,8 @@ const Signup = () => {
                                                value={password2}
                                                onChange={handleChange}>
                                         </input>
-                                        <div className="invalid-feedback">
-                                            Confirm password
-                                        </div>
                                     </div>
+
                                     <div className="d-flex align-items-center">
                                         <div className="form-check">
                                             <input
@@ -158,6 +153,7 @@ const Signup = () => {
                                             </button>
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                             <div className="card-footer py-3 border-0">
