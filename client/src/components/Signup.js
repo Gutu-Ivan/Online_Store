@@ -46,8 +46,8 @@ const Signup = () => {
                 errorMsg: 'Passwords do not match'
             })
         } else {
-            const {username, email, password1, password2} = formData
-            const data = {username, email, password1, password2};
+            const {username, email, password1} = formData
+            const data = {username, email, password1};
             setFormData({...formData, loading: true});
 
             signup(data)
@@ -64,7 +64,10 @@ const Signup = () => {
                 })
                 .catch (err => {
                     console.log('Axios signup error', err);
-                    setFormData({...formData, loading: false})
+                    setFormData({
+                        ...formData,
+                        loading: false,
+                        errorMsg: err.response.data.errorMessage})
                 })
         }
     }
