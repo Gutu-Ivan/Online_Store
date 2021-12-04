@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+const morgan = require('morgan');
 const db = require('./database/db');
 
+app.use(cors())
+app.use(morgan('dev'))
+app.use(express.json())
 db();
 
 const port = process.env.PORT || 5000;
