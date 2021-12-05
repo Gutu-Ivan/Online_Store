@@ -1,10 +1,10 @@
-import React, { useState }  from 'react';
-import { Link }             from 'react-router-dom';
-import { isEmail, isEmpty } from "validator";
-import { signin }           from "../API/auth";
-import { showErrorMsg }     from "../helpers/message";
-import { showLoading }      from "../helpers/loading";
-import {setAuthentication} from '../helpers/auth';
+import React, { useState }                    from 'react';
+import { Link }                               from 'react-router-dom';
+import { isEmail, isEmpty }                   from "validator";
+import { signin }                             from "../API/auth";
+import { showErrorMsg }                       from "../helpers/message";
+import { showLoading }                        from "../helpers/loading";
+import { isAuthenticated, setAuthentication } from '../helpers/auth';
 import '../assets/css/Main.css';
 
 const Signin = () => {
@@ -12,10 +12,9 @@ const Signin = () => {
         email: '',
         password1: '',
         errorMsg: false,
-        loading: false,
-        redirectToDashboard: false
+        loading: false
     });
-    const { email, password1, errorMsg, loading, redirectToDashboard } = formData;
+    const { email, password1, errorMsg, loading } = formData;
 
     const handleChange = (evt) => {
         setFormData({
@@ -44,6 +43,12 @@ const Signin = () => {
             signin(data)
                 .then((response) => {
                     setAuthentication(response.data.token, response.data.user);
+                    if (isAuthenticated() && isAuthenticated().role === 1) {
+                        console.log('Redirecting to admin dashboard');
+                    }
+                    else{
+                        console.log('Redirecting to user dashboard');
+                    }
                 })
                 .catch(err => {
                     console.log('Signin API function error: ', err)
