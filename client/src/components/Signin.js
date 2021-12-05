@@ -40,7 +40,9 @@ const Signin = () => {
             const data = { email, password1 };
             setFormData({ ...formData, loading: true });
 
-            signin(data);
+            signin(data)
+                .then()
+                .catch()
         }
     }
 
