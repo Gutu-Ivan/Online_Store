@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
+
 exports.signupController = async (req, res) => {
     const { username, email, password1 } = req.body;
     try {
@@ -28,4 +29,8 @@ exports.signupController = async (req, res) => {
             "errorMessage": 'Server error',
         });
     }
+};
+
+exports.signinController = async (req, res) => {
+    console.log('Signin controller')
 };

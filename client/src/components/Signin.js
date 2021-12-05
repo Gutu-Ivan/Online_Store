@@ -1,19 +1,48 @@
-import React, { useState } from 'react';
-import { Link }            from 'react-router-dom';
-import { showLoading }     from "../helpers/loading";
-import '../assets/css/Main.css'
+import React, { useState }  from 'react';
+import { Link }             from 'react-router-dom';
+import { isEmail, isEmpty } from "validator";
+import { signin }           from "../API/auth";
+import { showErrorMsg }     from "../helpers/message"
+import { showLoading }      from "../helpers/loading";
+import '../assets/css/Main.css';
 
 const Signin = () => {
-    const [formData] = useState({
-        username: '',
+    const [formData, setFormData] = useState({
         email: '',
         password1: '',
-        password2: '',
-        successMsg: false,
         errorMsg: false,
-        loading: false
+        loading: false,
+        redirectToDashboard: false
     });
-    const { loading } = formData;
+    const { email, password1, errorMsg, loading, redirectToDashboard } = formData;
+
+    const handleChange = (evt) => {
+        setFormData({
+            ...formData,
+            [evt.target.name]: evt.target.value,
+            errorMsg: ''
+        });
+    }
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        if (isEmpty(email) || isEmpty(password1)) {
+            setFormData({
+                ...formData,
+                errorMsg: 'All fields are required',
+            });
+        } else if (!isEmail(email)) {
+            setFormData({
+                ...formData,
+                errorMsg: 'Invalid email',
+            });
+        } else {
+            const { email, password1 } = formData
+            const data = { email, password1 };
+            setFormData({ ...formData, loading: true });
+
+            signin(data);
+        }
+    }
 
     const showSigninForm = () => (
         <section className="h-100">
@@ -23,7 +52,8 @@ const Signin = () => {
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Login</h1>
-                                <form method="POST" className="needs-validation" noValidate="" autoComplete="off">
+                                <form method="POST" className="needs-validation" noValidate="" onSubmit={ handleSubmit }
+                                      autoComplete="off">
 
                                     <div className="mb-3">
                                         <label className="mb-2 text-muted" htmlFor="email">
@@ -33,7 +63,8 @@ const Signin = () => {
                                                type="email"
                                                className="form-control"
                                                name="email"
-                                               autoFocus>
+                                               autoFocus
+                                               onChange={ handleChange }>
                                         </input>
                                         <div className="invalid-feedback">
                                             Email is invalid
@@ -42,7 +73,7 @@ const Signin = () => {
 
                                     <div className="mb-3">
                                         <div className="mb-2 w-100">
-                                            <label className="text-muted" htmlFor="password">
+                                            <label className="text-muted" htmlFor="password1">
                                                 Password
                                             </label>
                                             <Link to="/forgot-password" className="float-end">
@@ -53,7 +84,8 @@ const Signin = () => {
                                             id="password"
                                             type="password"
                                             className="form-control"
-                                            name="password">
+                                            name="password1"
+                                            onChange={ handleChange }>
                                         </input>
                                         <div className="invalid-feedback">
                                             Password is required
@@ -99,9 +131,10 @@ const Signin = () => {
     return (
         <div className="signup-container">
             <div className="my-5">
-                {loading && showLoading()}
+                { errorMsg && showErrorMsg(errorMsg) }
             </div>
-            {showSigninForm()}
+            { loading && showLoading() }
+            { showSigninForm() }
         </div>
     )
 };
