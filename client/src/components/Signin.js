@@ -1,5 +1,5 @@
-import React, { useState }                    from 'react';
-import { Link }                               from 'react-router-dom';
+import React, { useState, useEffect }                    from 'react';
+import { Link, useNavigate }                  from 'react-router-dom';
 import { isEmail, isEmpty }                   from "validator";
 import { signin }                             from "../API/auth";
 import { showErrorMsg }                       from "../helpers/message";
@@ -8,6 +8,16 @@ import { isAuthenticated, setAuthentication } from '../helpers/auth';
 import '../assets/css/Main.css';
 
 const Signin = () => {
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated() && isAuthenticated().role === 1) {
+            navigate('/admin/dashboard');
+        } else if (isAuthenticated() && isAuthenticated().role === 0) {
+            navigate('/user/dashboard');
+        }
+    }, [navigate]);
+
     const [formData, setFormData] = useState({
         email: '',
         password1: '',
@@ -43,11 +53,13 @@ const Signin = () => {
             signin(data)
                 .then((response) => {
                     setAuthentication(response.data.token, response.data.user);
+
                     if (isAuthenticated() && isAuthenticated().role === 1) {
                         console.log('Redirecting to admin dashboard');
-                    }
-                    else{
+                        navigate('/admin/dashboard');
+                    } else {
                         console.log('Redirecting to user dashboard');
+                        navigate('/user/dashboard');
                     }
                 })
                 .catch(err => {

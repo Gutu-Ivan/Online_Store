@@ -6,6 +6,8 @@ import Signup                           from "./Signup";
 import Signin                           from "./Signin";
 import Reset                            from "./Reset";
 import Forgot                           from "./Forgot";
+import UserDashboard                    from "./UserDashboard";
+import AdminDashboard                   from "./AdminDashboard";
 import NotFound                         from "./NotFound";
 import './App.css';
 
@@ -14,12 +16,15 @@ const App = () => (
         <Header/>
         <main>
             <Routes>
-                <Route exact path={'/'} element={<Home/>}/>
-                <Route exact path={'/signup'} element={<Signup/>}/>
-                <Route exact path={'/signin'} element={<Signin/>}/>
-                <Route exact path={'/reset-password'} element={<Reset/>}/>
-                <Route exact path={'/forgot-password'} element={<Forgot/>}/>
-                <Route path={'*'} element={<NotFound/>}/>
+                <Route exact path={ '/' } element={ <Home/> }/>
+                <Route exact path={ '/signup' } element={ <Signup/> }/>
+                <Route exact path={ '/signin' } element={ <Signin/> }/>
+                <Route exact path={ '/reset-password' } element={ <Reset/> }/>
+                <Route exact path={ '/forgot-password' } element={ <Forgot/> }/>
+                <Route exact path={ '/user/dashboard' } element={ <UserDashboard/> }/>
+                <Route exact path={ '/admin/dashboard' } element={ <AdminDashboard/> }/>
+                <Route path={ '*' } element={ <NotFound/> }/>
+
             </Routes>
         </main>
     </BrowserRouter>

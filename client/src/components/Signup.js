@@ -1,12 +1,23 @@
-import React, { useState }              from 'react';
-import { Link }                         from 'react-router-dom';
+import React, { useEffect, useState }   from 'react';
+import { Link, useNavigate }            from 'react-router-dom';
 import { equals, isEmail, isEmpty }     from 'validator';
 import { showErrorMsg, showSuccessMsg } from '../helpers/message';
 import { showLoading }                  from "../helpers/loading";
 import { signup }                       from '../API/auth';
 import '../assets/css/Main.css'
+import { isAuthenticated }              from "../helpers/auth";
 
 const Signup = () => {
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated() && isAuthenticated().role === 1) {
+            navigate('/admin/dashboard');
+        } else if (isAuthenticated() && isAuthenticated().role === 0) {
+            navigate('/user/dashboard');
+        }
+    }, [navigate]);
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -81,7 +92,8 @@ const Signup = () => {
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Register</h1>
-                                <form method="POST" className="needs-validation" noValidate="" onSubmit={handleSubmit} autoComplete="off">
+                                <form method="POST" className="needs-validation" noValidate="" onSubmit={ handleSubmit }
+                                      autoComplete="off">
 
                                     <div className="mb-3">
                                         <label className="mb-2 text-muted" htmlFor="username">
@@ -91,9 +103,9 @@ const Signup = () => {
                                                type="text"
                                                className="form-control"
                                                name="username"
-                                               value={username}
+                                               value={ username }
                                                autoFocus
-                                               onChange={handleChange}>
+                                               onChange={ handleChange }>
                                         </input>
                                     </div>
 
@@ -104,8 +116,8 @@ const Signup = () => {
                                         <input id="email"
                                                className="form-control"
                                                name="email"
-                                               value={email}
-                                               onChange={handleChange}>
+                                               value={ email }
+                                               onChange={ handleChange }>
                                         </input>
                                     </div>
 
@@ -117,8 +129,8 @@ const Signup = () => {
                                                type="password"
                                                className="form-control"
                                                name="password1"
-                                               value={password1}
-                                               onChange={handleChange}>
+                                               value={ password1 }
+                                               onChange={ handleChange }>
                                         </input>
                                     </div>
 
@@ -130,8 +142,8 @@ const Signup = () => {
                                                type="password"
                                                className="form-control"
                                                name="password2"
-                                               value={password2}
-                                               onChange={handleChange}>
+                                               value={ password2 }
+                                               onChange={ handleChange }>
                                         </input>
                                     </div>
 
@@ -174,11 +186,11 @@ const Signup = () => {
     return (
         <div className="signup-container">
             <div className="my-5">
-                {successMsg && showSuccessMsg(successMsg)}
-                {errorMsg && showErrorMsg(errorMsg)}
+                { successMsg && showSuccessMsg(successMsg) }
+                { errorMsg && showErrorMsg(errorMsg) }
             </div>
-            {loading && showLoading()}
-            {showSignupForm()}
+            { loading && showLoading() }
+            { showSignupForm() }
         </div>
     )
 };
