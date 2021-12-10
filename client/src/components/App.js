@@ -8,6 +8,8 @@ import Reset                            from "./Reset";
 import Forgot                           from "./Forgot";
 import UserDashboard                    from "./UserDashboard";
 import AdminDashboard                   from "./AdminDashboard";
+import UserRoute                        from "./UserRoute";
+import AdminRoute                       from "./UserRoute";
 import NotFound                         from "./NotFound";
 import './App.css';
 
@@ -21,8 +23,8 @@ const App = () => (
                 <Route exact path={"/signin"} component={Signin}/>
                 <Route exact path={ '/reset-password' } element={Reset}/>
                 <Route exact path={ '/forgot-password' } element={Forgot}/>
-                <Route exact path={"/user/dashboard"} component={UserDashboard}/>
-                <Route exact path={"/admin/dashboard"} component={AdminDashboard}/>
+                <UserRoute exact path={ "/user/dashboard" } component={UserDashboard}/>
+                <AdminRoute exact path={ "/admin/dashboard" } component={AdminDashboard}/>
                 <Route path={ '*' } component={NotFound}/>
             </Switch>
         </main>

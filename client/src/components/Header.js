@@ -6,7 +6,7 @@ import {isAuthenticated, logout} from "../helpers/auth";
 const Header = ({history}) => {
     const handleLogout = (evt) => {
         logout(() => {
-            history.push('/home');
+            history.push('/signin');
         });
     };
 
