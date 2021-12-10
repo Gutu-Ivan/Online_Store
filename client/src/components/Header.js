@@ -53,6 +53,15 @@ const Header = () => {
                         <Fragment>
                             <li className='nav-item'>
                                 <Link to='/user/dashboard' className='nav-link text-white'>
+                                    Dashboard
+                                </Link>
+                            </li>
+                        </Fragment>
+                    )}
+                    {isAuthenticated() && (
+                        <Fragment>
+                            <li className='nav-item'>
+                                <Link to='/logout' className='nav-link text-white'>
                                     Logout
                                 </Link>
                             </li>

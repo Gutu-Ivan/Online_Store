@@ -24,7 +24,6 @@ const App = () => (
                 <Route exact path="/user/dashboard" component={UserDashboard}/>
                 <Route exact path="/admin/dashboard" component={AdminDashboard}/>
                 <Route path={ '*' } element={ <NotFound/> }/>
-
             </Switch>
         </main>
     </BrowserRouter>
