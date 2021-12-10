@@ -16,14 +16,14 @@ const App = () => (
         <Header/>
         <main>
             <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/signup" component={Signup}/>
-                <Route exact path="/signin" component={Signin}/>
+                <Route exact path={"/"} component={Home}/>
+                <Route exact path={"/signup"} component={Signup}/>
+                <Route exact path={"/signin"} component={Signin}/>
                 <Route exact path={ '/reset-password' } element={Reset}/>
                 <Route exact path={ '/forgot-password' } element={Forgot}/>
-                <Route exact path="/user/dashboard" component={UserDashboard}/>
-                <Route exact path="/admin/dashboard" component={AdminDashboard}/>
-                <Route path={ '*' } element={ <NotFound/> }/>
+                <Route exact path={"/user/dashboard"} component={UserDashboard}/>
+                <Route exact path={"/admin/dashboard"} component={AdminDashboard}/>
+                <Route path={ '*' } component={NotFound}/>
             </Switch>
         </main>
     </BrowserRouter>

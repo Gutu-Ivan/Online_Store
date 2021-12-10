@@ -1,9 +1,15 @@
 import React, {Fragment} from "react";
 import {withRouter} from "react-router-dom";
 import { Link }            from "react-router-dom"
-import {isAuthenticated} from "../helpers/auth";
+import {isAuthenticated, logout} from "../helpers/auth";
 
-const Header = () => {
+const Header = ({history}) => {
+    const handleLogout = (evt) => {
+        logout(() => {
+            history.push('/home');
+        });
+    };
+
     const showNavigation = () => (
         <nav className='navbar navbar-expand-lg navbar-light bg-main'>
             <Link to='/' className='navbar-brand text-white'>
@@ -61,9 +67,9 @@ const Header = () => {
                     {isAuthenticated() && (
                         <Fragment>
                             <li className='nav-item'>
-                                <Link to='/logout' className='nav-link text-white'>
+                                <button onClick={handleLogout} className='nav-link text-white'>
                                     Logout
-                                </Link>
+                                </button>
                             </li>
                         </Fragment>
                     )}
