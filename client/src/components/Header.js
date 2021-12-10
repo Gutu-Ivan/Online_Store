@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
-import { withRouter }      from 'react-router-dom';
-import { Link }            from "react-router-dom";
-import { isAuthenticated } from "../helpers/auth";
+import React, {Fragment} from "react";
+import {withRouter} from "react-router-dom";
+import { Link }            from "react-router-dom"
+import {isAuthenticated} from "../helpers/auth";
 
 const Header = () => {
     const showNavigation = () => (
@@ -21,36 +21,43 @@ const Header = () => {
             </button>
             <div className='collapse navbar-collapse' id='navbarTogglerDemo02'>
                 <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
-                    { !isAuthenticated() && isAuthenticated().role === 1 && (
+                    {!isAuthenticated() && (
                         <Fragment>
                             <li className='nav-item'>
                                 <Link to='/home' className='nav-link text-white'>
                                     Home
                                 </Link>
                             </li>
+                            <li className='nav-item'>
+                                <Link to='/signup' className='nav-link text-white'>
+                                    Sign Up
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to='/signin' className='nav-link text-white'>
+                                    Sign In
+                                </Link>
+                            </li>
                         </Fragment>
                     )}
-
-                    { !isAuthenticated() && isAuthenticated().role === 0 && (
+                    {isAuthenticated() && isAuthenticated().role === 1 && (
                         <Fragment>
                             <li className='nav-item'>
-                                <Link to='/user/dashboard' className='nav-link text-white'>
+                                <Link to='/admin/dashboard' className='nav-link text-white'>
                                     Dashboard
                                 </Link>
                             </li>
                         </Fragment>
                     )}
-
-                    { !isAuthenticated() && (
+                    {isAuthenticated() && isAuthenticated().role === 0 && (
                         <Fragment>
                             <li className='nav-item'>
-                                <Link to='/logout' className='nav-link text-white'>
+                                <Link to='/user/dashboard' className='nav-link text-white'>
                                     Logout
                                 </Link>
                             </li>
                         </Fragment>
                     )}
-
                 </ul>
             </div>
         </nav>

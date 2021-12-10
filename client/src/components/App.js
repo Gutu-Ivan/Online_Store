@@ -1,5 +1,5 @@
 import React                            from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header                           from './Header';
 import Home                             from './Home';
 import Signup                           from "./Signup";
@@ -15,17 +15,17 @@ const App = () => (
     <BrowserRouter>
         <Header/>
         <main>
-            <Routes>
-                <Route exact path={ '/' } element={ <Home/> }/>
-                <Route exact path={ '/signup' } element={ <Signup/> }/>
-                <Route exact path={ '/signin' } element={ <Signin/> }/>
-                <Route exact path={ '/reset-password' } element={ <Reset/> }/>
-                <Route exact path={ '/forgot-password' } element={ <Forgot/> }/>
-                <Route exact path={ '/user/dashboard' } element={ <UserDashboard/> }/>
-                <Route exact path={ '/admin/dashboard' } element={ <AdminDashboard/> }/>
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/signup" component={Signup}/>
+                <Route exact path="/signin" component={Signin}/>
+                <Route exact path={ '/reset-password' } element={Reset}/>
+                <Route exact path={ '/forgot-password' } element={Forgot}/>
+                <Route exact path="/user/dashboard" component={UserDashboard}/>
+                <Route exact path="/admin/dashboard" component={AdminDashboard}/>
                 <Route path={ '*' } element={ <NotFound/> }/>
 
-            </Routes>
+            </Switch>
         </main>
     </BrowserRouter>
 );

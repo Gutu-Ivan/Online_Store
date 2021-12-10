@@ -1,5 +1,5 @@
 import React, { useEffect, useState }   from 'react';
-import { Link, useNavigate }            from 'react-router-dom';
+import { Link, useHistory, withRouter }            from 'react-router-dom';
 import { equals, isEmail, isEmpty }     from 'validator';
 import { showErrorMsg, showSuccessMsg } from '../helpers/message';
 import { showLoading }                  from "../helpers/loading";
@@ -8,15 +8,15 @@ import '../assets/css/Main.css'
 import { isAuthenticated }              from "../helpers/auth";
 
 const Signup = () => {
-    let navigate = useNavigate();
+    let history = useHistory();
 
     useEffect(() => {
         if (isAuthenticated() && isAuthenticated().role === 1) {
-            navigate('/admin/dashboard');
+            history.push('/admin/dashboard');
         } else if (isAuthenticated() && isAuthenticated().role === 0) {
-            navigate('/user/dashboard');
+            history.push('/user/dashboard');
         }
-    }, [navigate]);
+    }, [history]);
 
     const [formData, setFormData] = useState({
         username: '',
