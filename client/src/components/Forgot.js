@@ -30,7 +30,7 @@ const Forgot = () => {
                                     </div>
 
                                     <div className="d-flex align-items-center">
-                                        <button type="submit" className="btn btn-primary ms-auto">
+                                        <button type="submit" className="btn btn-dark ms-auto">
                                             Send Link
                                         </button>
                                     </div>

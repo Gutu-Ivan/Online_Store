@@ -84,17 +84,19 @@ body {
     }
 }
 
-.btn-primary {
+.btn-dark {
     border: none !important;
     box-shadow: none !important;
     text-decoration: none;
+    border-radius: 50px;
 }
 
-.btn-primary:hover {
-    background-color: rgba(13, 110, 253, 0.7);
+.btn-dark:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50px;
 }
 
-.btn-primary:active {
+.btn-dark:active {
     transform: scale(0.9);
 }
 

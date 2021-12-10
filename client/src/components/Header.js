@@ -67,7 +67,7 @@ const Header = ({history}) => {
                     {isAuthenticated() && (
                         <Fragment>
                             <li className='nav-item'>
-                                <button onClick={handleLogout} className='nav-link text-white'>
+                                <button onClick={handleLogout} className='nav-link btn-dark bg-main text-white'>
                                     Logout
                                 </button>
                             </li>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState }   from 'react';
-import { Link, useHistory, withRouter }            from 'react-router-dom';
+import { Link, useHistory }            from 'react-router-dom';
 import { equals, isEmail, isEmpty }     from 'validator';
 import { showErrorMsg, showSuccessMsg } from '../helpers/message';
 import { showLoading }                  from "../helpers/loading";
 import { signup }                       from '../API/auth';
-import '../assets/css/Main.css'
 import { isAuthenticated }              from "../helpers/auth";
+import '../assets/css/Main.css'
 
 const Signup = () => {
     let history = useHistory();
@@ -160,7 +160,7 @@ const Signup = () => {
                                             </label>
                                         </div>
                                         <div className="align-items-center d-flex">
-                                            <button type="submit" className="btn btn-primary ms-auto">
+                                            <button type="submit" className="btn btn-dark ms-auto">
                                                 Register
                                             </button>
                                         </div>

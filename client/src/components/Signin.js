@@ -1,5 +1,5 @@
 import React, { useState, useEffect }                    from 'react';
-import { Link, useHistory, withRouter }                  from 'react-router-dom';
+import { Link, useHistory }                  from 'react-router-dom';
 import { isEmail, isEmpty }                   from "validator";
 import { signin }                             from "../API/auth";
 import { showErrorMsg }                       from "../helpers/message";
@@ -128,7 +128,7 @@ const Signin = () => {
                                                 Remember Me
                                             </label>
                                         </div>
-                                        <button type="submit" className="btn btn-primary ms-auto">
+                                        <button type="submit" className="btn btn-dark ms-auto">
                                             Login
                                         </button>
                                     </div>

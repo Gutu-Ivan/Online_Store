@@ -9,7 +9,7 @@ import Forgot                           from "./Forgot";
 import UserDashboard                    from "./UserDashboard";
 import AdminDashboard                   from "./AdminDashboard";
 import UserRoute                        from "./UserRoute";
-import AdminRoute                       from "./UserRoute";
+import AdminRoute                       from "./AdminRoute";
 import NotFound                         from "./NotFound";
 import './App.css';
 
@@ -21,8 +21,8 @@ const App = () => (
                 <Route exact path={"/"} component={Home}/>
                 <Route exact path={"/signup"} component={Signup}/>
                 <Route exact path={"/signin"} component={Signin}/>
-                <Route exact path={ '/reset-password' } element={Reset}/>
-                <Route exact path={ '/forgot-password' } element={Forgot}/>
+                <Route exact path={ '/reset-password' } component={Reset}/>
+                <Route exact path={ '/forgot-password' } component={Forgot}/>
                 <UserRoute exact path={ "/user/dashboard" } component={UserDashboard}/>
                 <AdminRoute exact path={ "/admin/dashboard" } component={AdminDashboard}/>
                 <Route path={ '*' } component={NotFound}/>
